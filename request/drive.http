@@ -1,0 +1,165 @@
+@base_url=http://localhost:3000
+@basic_auth=Basic bHVmZnk6bmlrdQ== 
+
+@gojo_jwt=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZ29qbyIsImlhdCI6MTczMDg4ODQwMn0.z7KU0vTHDGiFTENF6XrSZS2ymUUG593CFKH1rWVwC3o
+@nanami_jwt=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmFuYW1pIiwiaWF0IjoxNzMwOTY4NDE1fQ.vPOMlGC3dFcz712vh78ymVCXrVYjlWRXSUTw1sK_QRI
+//////////////////////
+//        GET
+//////////////////////
+###
+{{base_url}}/
+Authorization: {{basic_auth}}
+
+###
+{{base_url}}/drive/simu
+Authorization: {{basic_auth}}
+
+###
+{{base_url}}/drive/
+Authorization: {{gojo_jwt}}
+
+###
+{{base_url}}/drive/jujutsu
+Authorization: {{gojo_jwt}}
+
+###
+{{base_url}}/drive/info/jujutsu
+Authorization: {{gojo_jwt}}
+
+###
+{{base_url}}/drive/info/jujutsu/kaisen.txt
+Authorization: {{gojo_jwt}}
+
+//courses2 généré avec une methode post plus bas
+###
+{{base_url}}/drive/content/courses2.md
+Authorization: {{basic_auth}}
+
+###
+{{base_url}}/drive/content/jujutsu/kaisen.txt
+Authorization: {{gojo_jwt}}
+###
+{{base_url}}/drive/stats
+Authorization: {{basic_auth}}
+
+####
+{{base_url}}/drive/search/2
+Authorization: {{basic_auth}}
+
+####
+{{base_url}}/drive/search/content/pppp
+Authorization: {{basic_auth}}
+
+//Ajout de fichiers partagés dans une methode post plus bas
+####
+{{base_url}}/drive/shares
+Authorization: {{gojo_jwt}}
+
+####
+{{base_url}}/drive/shared
+Authorization: {{basic_auth}}
+
+####
+{{base_url}}/drive/shared/gojo/jujutsu/kaisen.txt
+Authorization: {{basic_auth}}
+
+
+//////////////////////
+//        POST
+//////////////////////
+
+###
+POST {{base_url}}/drive/content/courses2.md
+Content-Type: text/plain
+Authorization: {{basic_auth}}
+
+Hello
+ok 
+retour a la ligne
+rasengan
+Qu'est-ce que le Lorem Ipsum?
+Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. 
+Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500,
+quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.
+Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
+Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment,
+par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+
+Pourquoi l'utiliser?
+On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions
+et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte.
+Du texte. Du texte.' 
+est qu'il possède une distribution de lettres plus ou moins normale,
+et en tout cas comparable avec celle du français standard. 
+De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut,
+et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. 
+Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil,
+voire des phrases embarassantes).
+
+###
+POST  {{base_url}}/drive/markdown/courses2.md
+Authorization: {{basic_auth}}
+
+####
+POST {{base_url}}/drive/copyto/naruto/luffy2.txt
+Authorization: {{basic_auth}}
+
+####
+POST {{base_url}}/drive/share/jujutsu/kaisen.txt
+Authorization: {{gojo_jwt}}
+Content-Type: application/json
+
+{"login":"luffy"}
+
+####
+POST {{base_url}}/drive/share/jujutsu/kaisen.txt
+Authorization: {{gojo_jwt}}
+Content-Type: application/json
+
+{"login":"nanami"}
+
+
+//////////////////////
+//        PATCH
+//////////////////////
+
+### 
+PATCH {{base_url}}/drive/move/drive/luffy/courses2.md/to/nanami/sd_luffy1.md
+Authorization: {{basic_auth}}
+### 
+PATCH {{base_url}}/drive/move/drive/nanami/sd_luffy1.md/to/nanami/sd_nanami
+Authorization: {{nanami_jwt}}
+
+### 
+POST {{base_url}}/drive/copy/drive/luffy/to/drive/nanami/sd_luffy
+Authorization: {{basic_auth}}
+
+//////////////////////
+//        DELETE
+//////////////////////
+
+###
+DELETE  {{base_url}}/drive/sd_nanami/sd_luffy1.md
+Authorization: {{nanami_jwt}}
+
+###
+DELETE {{base_url}}/drive/share/jujutsu/kaisen.txt
+Authorization: {{gojo_jwt}}
+Content-Type: application/json
+
+{
+    "target":"luffy"
+}
+
+###
+DELETE {{base_url}}/drive/share/jujutsu/kaisen.txt
+Authorization: {{gojo_jwt}}
+Content-Type: application/json
+
+
+
+
+
+
+
+

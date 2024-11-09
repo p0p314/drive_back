@@ -1,0 +1,25 @@
+
+@base_url=http://localhost:3000
+
+@basic_auth_gojo=Basic Z29qbzpzYXRvcnU=
+
+@basic_auth_nanami=Basic bmFuYW1pOmtlbnRv
+@gojo_jwt=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZ29qbyIsImlhdCI6MTczMDg4ODQwMn0.z7KU0vTHDGiFTENF6XrSZS2ymUUG593CFKH1rWVwC3o
+
+####
+{{base_url}}/admin/stats
+Authorization: {{gojo_jwt}}
+
+###
+POST {{base_url}}/admin/upgrade/nanami
+Authorization: {{gojo_jwt}}
+###
+POST {{base_url}}/admin/downgrade/nanami
+Authorization: {{gojo_jwt}}
+###
+POST {{base_url}}/admin/quota/luffy/2950
+Authorization: {{gojo_jwt}}
+
+###
+POST {{base_url}}/admin/quota/luffy/9999999999
+Authorization: {{basic_auth_nanami}}

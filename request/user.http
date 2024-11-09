@@ -1,0 +1,31 @@
+@base_url=http://localhost:3000
+@basic_auth=Basic bHVmZnk6bmlrdQ== 
+@basic_auth_gojo=Basic Z29qbzpzYXRvcnU=
+@basic_auth_nanami=Basic bmFuYW1pOmtlbnRv
+
+###
+POST {{base_url}}/user/register
+Content-Type: application/json
+
+{
+    "login":"naruto",
+    "password":"ramen"
+}
+
+###
+POST {{base_url}}/user/register
+Content-Type: application/json
+
+{
+    "login":"user{{$randomInt 1 1000}}",
+    "password":"ramen"
+}
+
+###
+POST {{base_url}}/user/login
+Content-Type: application/json
+
+{
+    "login":"nanami",
+    "password":"satoru"
+}
